@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 코딩 허브 프론트엔드 개발자 지원자용 실무 과제
+---
+## 요구사항
+- 페이지는 텍스트로 되어있는 제목과 본문으로 구성
+- 처음페이지는 여러개의 위키페이지 제목이 목록
+- 처음페이지에 목록으로 보여지는 제목의 개수는 5개이며 그이상으로 넘어가면 페이지를 구분해서 표시
+- 위키페이지 제목을 클릭하면 제목과 본문 볼 수 있음
+- 위키페이지 본문에 다른 위키페이지 제목이 있으면 자동으로 링크가 걸리고 클릭하면 해당 위키페이지로 이동
+- 메인 페이지에서 추가 버튼을 누르면 새로 입력할 수 있는 창 나오고 제목과 내용 입력 가능
+- 위키 내용 페이지에는 수정 버튼, 수정 누르면 내용을 수정해서 저장
 
-## Getting Started
+## 기능 목록
+- 메인 페이지
+1. 게시글 제목을 5개씩 목록화한다.
+2. 게시글 목록은 페이지네이션으로 구성한다.
+3. 각 게시글은 상세페이지로 이동할 수 있는 링크를 가지고 있다.
+4. 추가 버튼 클릭시 게시글 작성 페이지로 넘어갈 수 있다.
+5. 제목 길이가 20글자 이상 넘어가면 초과하는 부분은'...'으로 대체한다.
 
-First, run the development server:
+- 상세페이지
+1. 클릭한 게시글의 제목과 상세글을 보여준다.
+2. 본문에 다른 위키페이지의 제목이 있으면 자동으로 링크가 걸리고 클릭하면 해당 위키페이지로 이동
+3. 수정 버튼으로 해당 게시글 수정 페이지로 넘어갈 수 있다.
+4. 수정, 추가시 상세페이지에선 수정, 추가된 데이터를 보여준다.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- 작성페이지
+1. 새로운 작성글인지 수정글인지에 따라 input의 value상태가 달라진다.
+2. validation 체크 => 제목, 내용중 하나라도 빈 값이 있으면 경고창이 뜬다.
+3. 저장 버튼을 누르면 저장하시겠습니까? 알람창이 뜬다.
+4. 알람창에서 취소를 누르면 알람창이 꺼진다.
+5. 알람창에서 저장을 누르면 상세페이지로 이동한다.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 추가 사항
+- not-found 페이지
+- loading 페이지
+- top 버튼
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 신경써야하는 점
+- 에러 처리
+- 디자인 시스템, 추상화
+- UX
