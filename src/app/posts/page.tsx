@@ -12,10 +12,7 @@ export default async function Home({ searchParams }) {
   const page = searchParams.page || 1;
   const size = searchParams.size || 5;
 
-  const res = await makeRequest(
-    METHOD.GET,
-    `${BASE_URL}/posts?page=${page}&size=${size}`,
-  );
+  const res = await makeRequest(METHOD.GET, `${BASE_URL}/posts?page=${page}&size=${size}`);
 
   posts.push(...res.posts);
 
