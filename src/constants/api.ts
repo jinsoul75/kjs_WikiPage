@@ -5,3 +5,5 @@ export const METHOD = {
   POST: 'POST',
   PATCH: 'PATCH',
 };
+
+export const POST_PER_PAGE = 5;
