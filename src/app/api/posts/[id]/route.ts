@@ -12,9 +12,7 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
       cache: 'no-store',
     });
 
-    const post = await response.json();
-
-    if (!post) {
+    if (response.status === 404) {
       return NextResponse.json(
         {
           error: {
@@ -25,6 +23,8 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
         { status: 404 },
       );
     }
+
+    const post = await response.json();
 
     return NextResponse.json({
       post: { ...post },

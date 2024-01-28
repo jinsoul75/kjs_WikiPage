@@ -27,6 +27,10 @@ export default async function makeRequest(method: string, url: string, data?: un
         throw new Error('Unsupported HTTP method');
     }
 
+    if (res.status === 404) {
+      throw new Error('Not Found');
+    }
+
     return res.json();
   } catch (error) {
     console.error(error);
