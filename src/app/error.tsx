@@ -13,7 +13,7 @@ export default function Error({ error }: { error: Error & { digest?: string } })
   return (
     <Section className="justify-center items-center gap-6">
       <Title>Something went wrong!</Title>
-      <div>JSON-SERVER가 켜져있는지 확인해주세요.</div>
+      <div className='text-m'>{error.message}</div>
     </Section>
   );
 }
