@@ -7,7 +7,7 @@
 2. json-server를 실행합니다. </br> `npx json-server --port 9999 --watch db.json`
 3. 프로젝트를 실행합니다. <br/> `npm run dev`
 
-<strong>(참고)</strong> 프로젝트와 json-server의 포트번호를 변경해야한다면 `src/constants/` 폴더의 `BASE_API_URL` 또는 `JSON_SERVER_URL`의 주소를 변경해주세요.
+<strong>(참고)</strong> 프로젝트의 포트번호는 3000, json-server의 포트번호는 9999로 설정되어있습니다. 포트번호를 변경해야한다면 `src/constants/` 폴더의 `BASE_API_URL` 또는 `JSON_SERVER_URL`의 주소를 변경해주세요.
 
 ---
 ## 요구사항
