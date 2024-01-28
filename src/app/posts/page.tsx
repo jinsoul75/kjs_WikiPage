@@ -1,29 +1,40 @@
-import { BASE_URL, METHOD } from '@/constants/api';
 import makeRequest from '@/utils/makeRequest';
 
-import H1 from '@/components/common/H1';
+import { BASE_API_URL } from '@/constants/api';
+import { BUTTON_NAME, METHOD, POST_PER_PAGE } from '@/constants/constants';
+
+import { ParamsProps } from '@/types/types';
+
+import Title from '@/components/common/Title';
 import PostList from '@/components/list/PostList';
-import Paignation from '@/components/paignation/Paignation';
-import Button from '@/components/common/Button';
+import Pagination from '@/components/pagination/Pagination';
+import RouteButton from '@/components/common/RouteButton';
+import Section from '@/components/common/Section';
 
-export default async function Home({ searchParams }) {
-  const posts = [];
+export default async function Home({ searchParams }: ParamsProps) {
+  const page = searchParams?.page || 1;
+  const size = searchParams?.size || POST_PER_PAGE;
 
-  const page = searchParams.page || 1;
-  const size = searchParams.size || 5;
-
-  const res = await makeRequest(METHOD.GET, `${BASE_URL}/posts?page=${page}&size=${size}`);
-
-  posts.push(...res.posts);
-
-  const totalPages = res.pageInfo.totalPages;
+  const { first, prev, next, pages, data } = await makeRequest(
+    METHOD.GET,
+    `${BASE_API_URL}/posts?page=${page}&size=${size}`,
+  );
 
   return (
-    <section>
-      <H1>게시글 목록</H1>
-      <Button>추가</Button>
-      <PostList posts={posts} />
-      <Paignation totalPages={totalPages} pathname={'posts'} size={5} />
-    </section>
+    <Section>
+      <div className="flex justify-between">
+        <Title>게시글 목록</Title>
+        <RouteButton route="/posts/write">{BUTTON_NAME.ADD}</RouteButton>
+      </div>
+      <PostList posts={data} />
+      <Pagination
+        totalPages={pages}
+        firstPage={first}
+        previousPage={prev}
+        nextPage={next}
+        pathname={'posts'}
+        size={POST_PER_PAGE}
+      />
+    </Section>
   );
 }

@@ -1,22 +1,30 @@
 'use client';
 
-import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
+import { MdNavigateNext, MdNavigateBefore, MdLastPage, MdFirstPage } from 'react-icons/md';
 
-export default function Paignation({
+import PageLinkItem from './PageLinkItem';
+
+export default function Pagination({
   pathname,
   size,
   totalPages,
+  previousPage,
+  nextPage,
+  firstPage,
 }: {
   pathname: string;
   size: number;
   totalPages: number;
+  previousPage: number;
+  nextPage: number;
+  firstPage: number;
 }) {
   const searchParams = useSearchParams();
-  const currentPage = Number(searchParams.get('page')) || 1;
+  const currentPage = Number(searchParams?.get('page')) || firstPage;
 
   const createPageURL = (pageNumber: number | string) => {
-    return { pathname, query: { page: pageNumber, size } };
+    return `/${pathname}?page=${pageNumber}&size=${size}`;
   };
 
   const renderPageLinks = () => {
@@ -33,10 +41,11 @@ export default function Paignation({
 
     for (let i = start; i <= last; i++) {
       if (i <= totalPages) {
+        const isCurrentPage = currentPage === i;
         pageLinks.push(
-          <li key={i} className={i === currentPage ? 'bg-color-red' : ''}>
-            <Link href={createPageURL(i)}>{i}</Link>
-          </li>,
+          <PageLinkItem href={createPageURL(i)} className={isCurrentPage ? 'bg-gray-light' : ''}>
+            {i}
+          </PageLinkItem>,
         );
       }
     }
@@ -45,22 +54,24 @@ export default function Paignation({
   };
 
   return (
-    <nav>
-      <Link href={createPageURL(1)}>
-        <button disabled={currentPage === 1}>처음</button>
-      </Link>
-      <Link href={createPageURL(currentPage - 1)}>
-        <button disabled={currentPage === 1}>이전</button>
-      </Link>
+    <ul className="flex justify-center items-center mt-2">
+      <PageLinkItem href={createPageURL(firstPage)} disabled={currentPage === firstPage}>
+        <MdFirstPage className='flex' />
+      </PageLinkItem>
 
-      <ul>{renderPageLinks()}</ul>
+      <PageLinkItem href={createPageURL(previousPage)} disabled={currentPage === firstPage}>
+        <MdNavigateBefore className='flex'/>
+      </PageLinkItem>
 
-      <Link href={createPageURL(currentPage + 1)}>
-        <button disabled={currentPage === totalPages}>다음</button>
-      </Link>
-      <Link href={createPageURL(totalPages)}>
-        <button disabled={currentPage === totalPages}>마지막</button>
-      </Link>
-    </nav>
+      {renderPageLinks()}
+
+      <PageLinkItem href={createPageURL(nextPage)} disabled={currentPage === totalPages}>
+        <MdNavigateNext className='flex'/>
+      </PageLinkItem>
+
+      <PageLinkItem href={createPageURL(totalPages)} disabled={currentPage === totalPages}>
+        <MdLastPage className='flex'/>
+      </PageLinkItem>
+    </ul>
   );
 }

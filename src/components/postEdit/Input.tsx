@@ -1,20 +1,29 @@
 'use client';
 
-import { Post } from '@/constants/types';
+import { Post } from '@/types/types';
 
 interface InputProps {
   post?: Post;
-  label: string;
+  label?: string;
   className?: string;
   value?: string;
+  placeholder: string;
   onChange: (value: string) => void;
 }
 
-export default function Input({ label, className, value, onChange, ...props }: InputProps) {
+export default function Input({
+  label,
+  className,
+  value,
+  placeholder,
+  onChange,
+  ...props
+}: InputProps) {
   return (
     <>
       <label>{label}</label>
       <input
+        placeholder={placeholder}
         type="text"
         className={`${className}`}
         value={value}

@@ -1,18 +1,29 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ['./src/components/**/*.{js,ts,jsx,tsx,json}', './src/app/**/*.{js,ts,jsx,tsx,json}'],
   theme: {
-    extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      },
+    colors: {
+      white: '#fff',
+      ivory: '#f2f2f2',
+      blue: '#1fb6ff',
+      purple: '#7e5bef',
+      pink: '#ff49db',
+      orange: '#ff7849',
+      green: '#008275',
+      yellow: '#ffc82c',
+      'gray-dark': '#273444',
+      gray: '#8492a6',
+      'gray-light': '#ccc',
+      link:'#0275d8',
+      'btn-hover-gray':'#ebebeb'
+    },
+    fontSize: {
+      xs: '12px',
+      s: '16px',
+      m: '24px',
+      l: '32px',
+      xl: '36px',
     },
   },
   plugins: [],

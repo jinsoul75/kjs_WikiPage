@@ -1,22 +1,26 @@
-import { METHOD } from '@/constants/api';
+import { METHOD } from '@/constants/constants';
 
 export default async function makeRequest(method: string, url: string, data?: unknown) {
   try {
     let res;
     switch (method) {
       case METHOD.GET:
-        res = await fetch(url);
+        res = await fetch(url, {
+          cache: 'no-store',
+        });
         break;
       case METHOD.POST:
         res = await fetch(url, {
-          method: 'POST',
+          method: METHOD.POST,
           body: JSON.stringify(data),
+          cache: 'no-store',
         });
         break;
       case METHOD.PATCH:
         res = await fetch(url, {
-          method: 'PATCH',
+          method: METHOD.PATCH,
           body: JSON.stringify(data),
+          cache: 'no-store',
         });
         break;
       default:

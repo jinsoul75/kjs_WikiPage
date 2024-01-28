@@ -1,7 +1,9 @@
+import Link from 'next/link';
+
 export default async function Header() {
   return (
-    <header className="bg-base-color p-4">
-      <div>코딩 허브 위키</div>
+    <header className="bg-green p-4">
+      <Link href={'/'} className='text-white font-bold text-m p-2'>코딩 허브 위키</Link>
     </header>
   );
 }

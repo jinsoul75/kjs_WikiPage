@@ -1,10 +1,10 @@
 'use client';
 
-import { useRef, useMemo } from 'react';
-import ReactQuill from 'react-quill';
+import { useMemo } from 'react';
 import 'react-quill/dist/quill.snow.css';
+import dynamic from 'next/dynamic';
 
-import { Post } from '@/constants/types';
+import { Post } from '@/types/types';
 import { EDITOR_PLACEHOLDER } from '@/constants/messages';
 
 interface EditorProps {
@@ -13,8 +13,8 @@ interface EditorProps {
   onChange: (value: string) => void;
 }
 
-export default function Editor({ post, value, onChange }: EditorProps) {
-  const quillRef = useRef<ReactQuill | null>(null);
+export default function Editor({ value, onChange }: EditorProps) {
+  const ReactQuill = useMemo(() => dynamic(() => import('react-quill'), { ssr: false }), []);
 
   const modules = useMemo(
     () => ({
@@ -50,12 +50,11 @@ export default function Editor({ post, value, onChange }: EditorProps) {
 
   return (
     <ReactQuill
-      ref={quillRef}
       theme="snow"
       modules={modules}
       formats={formats}
       placeholder={EDITOR_PLACEHOLDER}
-      onChange={(value) => console.log(value)}
+      onChange={(value) => onChange(value)}
       value={value}
     />
   );

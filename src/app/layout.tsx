@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 
 import './globals.css';
 import Header from '@/components/header/Header';
+import loading from './loading';
 
 export const metadata: Metadata = {
   title: '코딩 허브 위키',
@@ -13,11 +15,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const mainStyle = 'px-6 h-full w-full flex flex-col items-center bg-background flex-1';
+
   return (
     <html lang="ko">
-      <body>
-        <Header />
-        <main className='mx-auto max-w-3xl px-6 min-h-screen flex flex-col'>{children}</main>
+      <body className="h-screen flex flex-col">
+        <Suspense fallback={loading()}>
+          <Header />
+          <main className={mainStyle}>{children}</main>
+        </Suspense>
       </body>
     </html>
   );
