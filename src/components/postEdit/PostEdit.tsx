@@ -75,7 +75,7 @@ export default function PostEdit({ post }: { post: Post | undefined }) {
         onChange={handleTitleChange}
         className="border-b border-b-gray-light focus:outline-none pb-2"
       />
-      <div className="grow my-4">
+      <div className="grow my-4 overflow-auto">
         <Editor value={content} onChange={handleContentChange} />
       </div>
       <div className="flex justify-center">
