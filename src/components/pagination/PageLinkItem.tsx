@@ -13,7 +13,7 @@ export default function PageLinkItem({
   className?: string;
 }) {
   return (
-    <li className="list-none" key='href'>
+    <li key="href">
       <button type="button" disabled={disabled} className="disabled:cursor-default">
         <Link
           href={href}

@@ -56,21 +56,21 @@ export default function Pagination({
   return (
     <ul className="flex justify-center items-center mt-2">
       <PageLinkItem href={createPageURL(firstPage)} disabled={currentPage === firstPage}>
-        <MdFirstPage className='flex' />
+        <MdFirstPage className="flex" />
       </PageLinkItem>
 
       <PageLinkItem href={createPageURL(previousPage)} disabled={currentPage === firstPage}>
-        <MdNavigateBefore className='flex'/>
+        <MdNavigateBefore className="flex" />
       </PageLinkItem>
 
       {renderPageLinks()}
 
       <PageLinkItem href={createPageURL(nextPage)} disabled={currentPage === totalPages}>
-        <MdNavigateNext className='flex'/>
+        <MdNavigateNext className="flex" />
       </PageLinkItem>
 
       <PageLinkItem href={createPageURL(totalPages)} disabled={currentPage === totalPages}>
-        <MdLastPage className='flex'/>
+        <MdLastPage className="flex" />
       </PageLinkItem>
     </ul>
   );
